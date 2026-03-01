@@ -1,0 +1,112 @@
+﻿<Page x:Class="WpfDiDay.Views.Onboarding.LoginPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="LoginPage" MinWidth="800" MinHeight="450">
+
+    <Page.Resources>
+        <Style x:Key="LabelStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#5F6368"/>
+            <Setter Property="Margin" Value="0,0,0,8"/>
+        </Style>
+
+        <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#1A73E8"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="6">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="LinkButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <TextBlock x:Name="txtContent" 
+                                   Text="{TemplateBinding Content}" 
+                                   Foreground="{TemplateBinding Foreground}" 
+                                   Background="Transparent" 
+                                   VerticalAlignment="Center"/>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="txtContent" Property="TextDecorations" Value="Underline"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.2*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#1A73E8" Offset="0.0"/>
+                    <GradientStop Color="#8AB4F8" Offset="1.0"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Text="Chào cưng" FontSize="48" FontWeight="Bold" 
+                           Foreground="White" Margin="0,0,0,15"/>
+                <TextBlock Text="Hệ thống quản lý cái gì đó tính sau" FontSize="18" 
+                           Foreground="#E8F0FE" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Border>
+
+        <Grid Grid.Column="1" Margin="40">
+            <Grid Grid.Column="1" Margin="40">
+                <StackPanel VerticalAlignment="Center" MaxWidth="380">
+
+                    <TextBlock Text="Đăng Nhập" FontSize="32" FontWeight="Bold" 
+                           Foreground="#202124" Margin="0,0,0,10"/>
+                    <TextBlock Text="Vui lòng nhập thông tin để tiếp tục" FontSize="15" 
+                           Foreground="#5F6368" Margin="0,0,0,40"/>
+
+                    <TextBlock Text="Tên đăng nhập" Style="{StaticResource LabelStyle}"/>
+                    <Border BorderBrush="#DADCE0" BorderThickness="1.5" CornerRadius="6" Margin="0,0,0,20">
+                        <TextBox Height="42" Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}" Padding="12,10" BorderThickness="0" Background="Transparent" 
+                             FontSize="15" Foreground="#202124"/>
+                    </Border>
+
+                    <TextBlock Text="Mật khẩu" Style="{StaticResource LabelStyle}"/>
+                    <Border BorderBrush="#DADCE0" BorderThickness="1.5" CornerRadius="6" Margin="0,0,0,30">
+                        <PasswordBox x:Name="PasswordBox" Height="42" Padding="12,10" BorderThickness="0" Background="Transparent" 
+                                 FontSize="15" Foreground="#202124"/>
+                    </Border>
+
+                    <Button Content="ĐĂNG NHẬP" Style="{StaticResource PrimaryButtonStyle}" Margin="0,0,0,25" Command="{Binding DangNhapButtonCommand}"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,0">
+                        <TextBlock Text="Chưa có tài khoản?" FontSize="15" Foreground="#5F6368" VerticalAlignment="Center"/>
+                        <Button Content="Đăng ký" 
+                            Style="{StaticResource LinkButtonStyle}" 
+                            Foreground="#1A73E8" 
+                            FontSize="15" 
+                            Margin="5,0,0,0" 
+                            Command="{Binding NavigateToRegisterCommand}"/>
+                    </StackPanel>
+
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>
