@@ -65,3 +65,4 @@ C:\Users\Windows\source\repos\WpfDiDay\WpfDiDay\obj\Debug\net8.0-windows\Views\O
 C:\Users\Windows\source\repos\WpfDiDay\WpfDiDay\obj\Debug\net8.0-windows\Views\Onboarding\RegisterPage.g.cs
 C:\Users\Windows\source\repos\WpfDiDay\WpfDiDay\obj\Debug\net8.0-windows\Views\Home\HomePage.baml
 C:\Users\Windows\source\repos\WpfDiDay\WpfDiDay\bin\Debug\net8.0-windows\CommunityToolkit.Mvvm.dll
+C:\Users\Windows\source\repos\WpfDiDay\WpfDiDay\obj\Debug\net8.0-windows\WpfDiDay.sourcelink.json

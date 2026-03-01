@@ -1,17 +1,15 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using System.Windows;
-using System.Windows.Controls;
 using WpfDiDay.Repositories;
-using WpfDiDay.Views.Home;
-using WpfDiDay.Views.Onboarding;
+using WpfDiDay.Services;
 
 namespace WpfDiDay.ViewModels.Onboarding
 {
     public partial class LoginPageViewModel : ObservableObject
     {
-        private readonly UserRepository userRepository = new();
-        private Page? _page;
+        private readonly UserRepository _userRepository = new();
+        private readonly INavigationService _navigationService;
+        private readonly IDialogService _dialogService;
 
         [ObservableProperty]
         private string userName = "";
@@ -19,9 +17,10 @@ namespace WpfDiDay.ViewModels.Onboarding
         [ObservableProperty]
         private string password = "";
 
-        public void SetPage(Page page)
+        public LoginPageViewModel(INavigationService navigationService, IDialogService dialogService)
         {
-            _page = page;
+            _navigationService = navigationService;
+            _dialogService = dialogService;
         }
 
         [RelayCommand]
@@ -29,49 +28,37 @@ namespace WpfDiDay.ViewModels.Onboarding
         {
             if (string.IsNullOrWhiteSpace(UserName))
             {
-                MessageBox.Show("Vui lòng nhập tên đăng nhập!", "Thông báo", 
-                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                _dialogService.ShowWarning("Vui lòng nhập tên đăng nhập!");
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(Password))
             {
-                MessageBox.Show("Vui lòng nhập mật khẩu!", "Thông báo", 
-                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                _dialogService.ShowWarning("Vui lòng nhập mật khẩu!");
                 return;
             }
 
-            var user = userRepository.FindByUserName(UserName);
+            var user = _userRepository.FindByUserName(UserName);
             if (user == null)
             {
-                MessageBox.Show("Tên đăng nhập không tồn tại!", "Lỗi đăng nhập", 
-                    MessageBoxButton.OK, MessageBoxImage.Error);
+                _dialogService.ShowError("Tên đăng nhập không tồn tại!", "Lỗi đăng nhập");
                 return;
             }
 
             if (user.Password != Password)
             {
-                MessageBox.Show("Mật khẩu không chính xác!", "Lỗi đăng nhập", 
-                    MessageBoxButton.OK, MessageBoxImage.Error);
+                _dialogService.ShowError("Mật khẩu không chính xác!", "Lỗi đăng nhập");
                 return;
             }
 
-            MessageBox.Show($"Đăng nhập thành công! Chào mừng {user.FirstName} {user.LastName}", 
-                "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
-
-            if (_page?.NavigationService != null)
-            {
-                _page.NavigationService.Navigate(new HomePage(user));
-            }
+            _dialogService.ShowSuccess($"Đăng nhập thành công! Chào mừng {user.FirstName} {user.LastName}");
+            _navigationService.NavigateToHome(user);
         }
 
         [RelayCommand]
         private void NavigateToRegister()
         {
-            if (_page?.NavigationService != null)
-            {
-                _page.NavigationService.Navigate(new RegisterPage());
-            }
+            _navigationService.NavigateToRegister();
         }
     }
 }

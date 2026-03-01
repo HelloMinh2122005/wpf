@@ -1,18 +1,29 @@
 ﻿using System.Windows.Controls;
+using WpfDiDay.Services;
 using WpfDiDay.ViewModels.Onboarding;
 
 namespace WpfDiDay.Views.Onboarding
 {
     public partial class LoginPage : Page
     {
-        private readonly LoginPageViewModel _viewModel;
+        private LoginPageViewModel _viewModel = null!;
 
         public LoginPage()
         {
             InitializeComponent();
-            _viewModel = new LoginPageViewModel();
-            _viewModel.SetPage(this);
+
+            var navigationService = new WpfNavigationService(() => this.NavigationService);
+            var dialogService = new WpfDialogService();
+
+            _viewModel = new LoginPageViewModel(navigationService, dialogService);
             DataContext = _viewModel;
+        }
+
+        // PasswordBox does not support two-way data binding natively in WPF.
+        // Push the value into the ViewModel manually via PasswordChanged event.
+        private void Password_PasswordChanged(object sender, System.Windows.RoutedEventArgs e)
+        {
+            _viewModel.Password = pbPassword.Password;
         }
     }
 }

@@ -93,39 +93,45 @@
                     <StackPanel Grid.Column="0">
                         <TextBlock Text="Họ" Style="{StaticResource LabelStyle}"/>
                         <Border BorderBrush="#DADCE0" BorderThickness="1.5" CornerRadius="6">
-                            <TextBox Height="42" Padding="12,10" BorderThickness="0" Background="Transparent" 
-                                     FontSize="15" Foreground="#202124"/>
+                            <TextBox x:Name="txtFirstName" Height="42" Padding="12,10" BorderThickness="0" Background="Transparent" 
+                                     FontSize="15" Foreground="#202124"
+                                     Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}"/>
                         </Border>
                     </StackPanel>
 
                     <StackPanel Grid.Column="2">
                         <TextBlock Text="Tên" Style="{StaticResource LabelStyle}"/>
                         <Border BorderBrush="#DADCE0" BorderThickness="1.5" CornerRadius="6">
-                            <TextBox Height="42" Padding="12,10" BorderThickness="0" Background="Transparent" 
-                                     FontSize="15" Foreground="#202124"/>
+                            <TextBox x:Name="txtLastName" Height="42" Padding="12,10" BorderThickness="0" Background="Transparent" 
+                                     FontSize="15" Foreground="#202124"
+                                     Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}"/>
                         </Border>
                     </StackPanel>
                 </Grid>
 
                 <TextBlock Text="Tên đăng nhập" Style="{StaticResource LabelStyle}"/>
                 <Border BorderBrush="#DADCE0" BorderThickness="1.5" CornerRadius="6" Margin="0,0,0,20">
-                    <TextBox Height="42" Padding="12,10" BorderThickness="0" Background="Transparent" 
-                             FontSize="15" Foreground="#202124"/>
+                    <TextBox x:Name="txtEmail" Height="42" Padding="12,10" BorderThickness="0" Background="Transparent" 
+                             FontSize="15" Foreground="#202124"
+                             Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"/>
                 </Border>
 
                 <TextBlock Text="Mật khẩu" Style="{StaticResource LabelStyle}"/>
                 <Border BorderBrush="#DADCE0" BorderThickness="1.5" CornerRadius="6" Margin="0,0,0,20">
-                    <PasswordBox Height="42" Padding="12,10" BorderThickness="0" Background="Transparent" 
-                                 FontSize="15" Foreground="#202124"/>
+                    <PasswordBox x:Name="pbPassword" Height="42" Padding="12,10" BorderThickness="0" Background="Transparent" 
+                                 FontSize="15" Foreground="#202124"
+                                 PasswordChanged="Password_PasswordChanged"/>
                 </Border>
 
                 <TextBlock Text="Nhập lại mật khẩu" Style="{StaticResource LabelStyle}"/>
                 <Border BorderBrush="#DADCE0" BorderThickness="1.5" CornerRadius="6" Margin="0,0,0,25">
-                    <PasswordBox Height="42" Padding="12,10" BorderThickness="0" Background="Transparent" 
-                                 FontSize="15" Foreground="#202124"/>
+                    <PasswordBox x:Name="pbConfirmPassword" Height="42" Padding="12,10" BorderThickness="0" Background="Transparent" 
+                                 FontSize="15" Foreground="#202124"
+                                 PasswordChanged="ConfirmPassword_PasswordChanged"/>
                 </Border>
 
-                <Button Content="TẠO TÀI KHOẢN" Style="{StaticResource PrimaryButtonStyle}" Margin="0,0,0,20"/>
+                <Button Content="TẠO TÀI KHOẢN" Style="{StaticResource PrimaryButtonStyle}" Margin="0,0,0,20"
+                        Command="{Binding DangKyCommand}"/>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,0">
                     <TextBlock Text="Đã có tài khoản?" FontSize="15" Foreground="#5F6368" VerticalAlignment="Center"/>
@@ -133,7 +139,8 @@
                             Style="{StaticResource LinkButtonStyle}" 
                             Foreground="#0F9D58" 
                             FontSize="15" 
-                            Margin="5,0,0,0" Click="Button_Click"/>
+                            Margin="5,0,0,0"
+                            Command="{Binding NavigateToLoginCommand}"/>
                 </StackPanel>
 
             </StackPanel>
