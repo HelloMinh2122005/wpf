@@ -19,8 +19,6 @@ namespace WpfDiDay.Views.Onboarding
             DataContext = _viewModel;
         }
 
-        // PasswordBox does not support two-way data binding natively in WPF.
-        // Push the value into the ViewModel manually via PasswordChanged event.
         private void Password_PasswordChanged(object sender, System.Windows.RoutedEventArgs e)
         {
             _viewModel.Password = pbPassword.Password;

@@ -14,8 +14,4 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.24" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ViewModels\Home\" />
-  </ItemGroup>
-
 </Project>

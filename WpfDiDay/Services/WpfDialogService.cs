@@ -18,5 +18,10 @@ namespace WpfDiDay.Services
         {
             MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Information);
         }
+
+        public bool ShowConfirmation(string message, string title = "Xác nhận")
+        {
+            return MessageBox.Show(message, title, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes;
+        }
     }
 }

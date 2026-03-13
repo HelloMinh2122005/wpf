@@ -1,30 +1,28 @@
-﻿using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using System.Windows.Input;
 using WpfDiDay.Models;
-using WpfDiDay.Views.Onboarding;
+using WpfDiDay.Services;
+using WpfDiDay.ViewModels.Home;
 
 namespace WpfDiDay.Views.Home
 {
     public partial class HomePage : Page
     {
-        private readonly User _currentUser;
-
         public HomePage(User user)
         {
             InitializeComponent();
-            _currentUser = user;
-            txtWelcome.Text = $"Chào mừng trở lại, {user.FirstName} {user.LastName} 👋";
+
+            var navigationService = new WpfNavigationService(() => this.NavigationService);
+            var dialogService = new WpfDialogService();
+
+            DataContext = new HomePageViewModel(user, navigationService, dialogService);
         }
 
         private void Logout_Click(object sender, MouseButtonEventArgs e)
         {
-            var result = MessageBox.Show("Đăng xuất khỏi hệ thống?", "Đăng xuất",
-                MessageBoxButton.YesNo, MessageBoxImage.Question);
-
-            if (result == MessageBoxResult.Yes)
+            if (DataContext is HomePageViewModel viewModel)
             {
-                NavigationService.Navigate(new LoginPage());
+                viewModel.LogoutCommand.Execute(null);
             }
         }
     }

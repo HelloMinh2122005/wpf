@@ -20,7 +20,7 @@
                 <TextBlock Text="BẢNG ĐIỀU KHIỂN" FontSize="13" FontWeight="Bold" 
                            Foreground="#64748B" Margin="0,0,0,5"/>
 
-                <TextBlock x:Name="txtWelcome" Text="Chào mừng trở lại, Minh 👋" 
+                <TextBlock x:Name="txtWelcome" Text="{Binding WelcomeText}" 
                            FontSize="32" FontWeight="Bold" Foreground="#0F172A"/>
 
                 <TextBlock Text="Hôm nay bạn muốn làm gì?" FontSize="15" 

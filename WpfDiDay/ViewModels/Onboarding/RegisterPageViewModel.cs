@@ -18,7 +18,6 @@ namespace WpfDiDay.ViewModels.Onboarding
         [ObservableProperty]
         private string lastName = "";
 
-        // "Tên đăng nhập" — maps to User.Email in the data model
         [ObservableProperty]
         private string email = "";
 
