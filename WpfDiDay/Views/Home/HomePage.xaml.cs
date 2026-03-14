@@ -12,7 +12,7 @@ namespace WpfDiDay.Views.Home
         {
             InitializeComponent();
 
-            var navigationService = new WpfNavigationService(() => this.NavigationService);
+            var navigationService = new WpfNavigationService(this);
             var dialogService = new WpfDialogService();
 
             DataContext = new HomePageViewModel(user, navigationService, dialogService);

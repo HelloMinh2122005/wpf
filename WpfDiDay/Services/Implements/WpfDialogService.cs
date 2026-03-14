@@ -1,6 +1,6 @@
 using System.Windows;
 
-namespace WpfDiDay.Services
+namespace WpfDiDay.Services.Implements
 {
     public class WpfDialogService : IDialogService
     {

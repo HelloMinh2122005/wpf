@@ -12,7 +12,7 @@ namespace WpfDiDay.Views.Onboarding
         {
             InitializeComponent();
 
-            var navigationService = new WpfNavigationService(() => this.NavigationService);
+            var navigationService = new WpfNavigationService(this);
             var dialogService = new WpfDialogService();
 
             _viewModel = new RegisterPageViewModel(navigationService, dialogService);

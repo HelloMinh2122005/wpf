@@ -6,13 +6,13 @@ namespace WpfDiDay.Views.Onboarding
 {
     public partial class LoginPage : Page
     {
-        private LoginPageViewModel _viewModel = null!;
+        private readonly LoginPageViewModel _viewModel = null!;
 
         public LoginPage()
         {
             InitializeComponent();
 
-            var navigationService = new WpfNavigationService(() => this.NavigationService);
+            var navigationService = new WpfNavigationService(this);
             var dialogService = new WpfDialogService();
 
             _viewModel = new LoginPageViewModel(navigationService, dialogService);
