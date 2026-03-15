@@ -11,6 +11,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -27,20 +28,36 @@
                            Foreground="#64748B" Margin="0,5,0,0"/>
             </StackPanel>
         </Border>
-
-        <Grid Grid.Row="1" Margin="40">
-            <WrapPanel ItemWidth="250" ItemHeight="150">
-
-                <Border Background="#FEF2F2" BorderBrush="#FECACA" BorderThickness="1" 
-                        CornerRadius="12" Margin="0,0,20,20" Padding="20" Cursor="Hand"
-                        MouseLeftButtonDown="Logout_Click">
-                    <StackPanel>
-                        <TextBlock Text="🚪" FontSize="30" Margin="0,0,0,10"/>
-                        <TextBlock Text="Đăng xuất" FontSize="18" FontWeight="SemiBold" Foreground="#DC2626"/>
-                    </StackPanel>
-                </Border>
-
-            </WrapPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Thêm món ăn" FontFamily="Cambria" BorderThickness="5" Background="DarkSeaGreen" Margin="5" FontSize="20" Command="{Binding OpenAddFoodCommand}"/>
+            <Button Content="Xóa món ăn" FontFamily="Cambria" Background="LightCoral" Margin="5" BorderThickness="5" FontSize="20"  Command="{Binding RemoveFoodCommand}"/>
+            <Button Content="Sửa món ăn" FontFamily="Cambria" Background="LightSkyBlue" Margin="5" BorderThickness="5"  FontSize="20" Command="{Binding OpenEditFoodCommand}"/>
+        </StackPanel>
+        <Grid Grid.Row="2" Margin="40">
+            <DataGrid ItemsSource="{Binding Foods}" 
+          AutoGenerateColumns="False"
+          CanUserAddRows="False"
+          CanUserDeleteRows="False"
+          SelectionMode="Single"
+          SelectionChanged="FoodAnalysis_SelectionChanged">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Tên món ăn" 
+                            FontFamily="Cambria" 
+                            Binding="{Binding FoodName}" 
+                            Width="3*" 
+                            IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Thời gian ăn" 
+                            Binding="{Binding FoodEatingTime, StringFormat='dd/MM/yyyy'}" 
+                            Width="5*" 
+                            FontFamily="Cambria" 
+                            IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Lượng Calories"
+                            Binding="{Binding FoodCalories, StringFormat='{}{0} cal'}" 
+                            Width="*" 
+                            FontFamily="Cambria" 
+                            IsReadOnly="True"/>
+                </DataGrid.Columns>
+            </DataGrid>
         </Grid>
     </Grid>
 </Page>

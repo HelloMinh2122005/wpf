@@ -21,6 +21,22 @@ namespace WpfDiDay.ViewModels.Home
         }
 
         [RelayCommand]
+        private void OpenAddFood()
+        {
+            _navigationService.OpenAddFood();
+        }
+        [RelayCommand]
+        private void OpenEditFood()
+        {
+            _navigationService.OpenEditFood();
+        }
+        [RelayCommand]
+        private void RemoveFood()
+        {
+
+        }
+
+        [RelayCommand]
         private void Logout()
         {
             if (_dialogService.ShowConfirmation("Đăng xuất khỏi hệ thống?", "Đăng xuất"))
@@ -28,5 +44,7 @@ namespace WpfDiDay.ViewModels.Home
                 _navigationService.NavigateToLogin();
             }
         }
+
+        
     }
 }

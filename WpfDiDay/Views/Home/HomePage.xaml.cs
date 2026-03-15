@@ -1,7 +1,7 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Input;
 using WpfDiDay.Models;
-using WpfDiDay.Services;
+using WpfDiDay.Services.Implements;
 using WpfDiDay.ViewModels.Home;
 
 namespace WpfDiDay.Views.Home
@@ -24,6 +24,11 @@ namespace WpfDiDay.Views.Home
             {
                 viewModel.LogoutCommand.Execute(null);
             }
+        }
+
+        private void FoodAnalysis_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

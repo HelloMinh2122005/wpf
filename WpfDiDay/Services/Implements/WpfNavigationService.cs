@@ -28,5 +28,14 @@ namespace WpfDiDay.Services.Implements
         {
             _page.NavigationService?.GoBack();
         }
+
+        public void OpenEditFood()
+        {
+            _page.NavigationService?.Navigate(new FoodDetail());
+        }
+        public void OpenAddFood()
+        {
+            _page.NavigationService?.Navigate(new FoodDetail());
+        }
     }
 }
