@@ -5,13 +5,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WpfDiDay.Services;
 using WpfDiDay.Models;
+using WpfDiDay.Repositories;
+using WpfDiDay.Services;
 
 namespace WpfDiDay.ViewModels.Home
 {
     public partial class FoodDetailViewModel : ObservableObject
     {
+        private readonly FoodRepository _foodRepository = new();
         private readonly INavigationService _navigationService;
         private readonly IDialogService _dialogService;
         [ObservableProperty]
