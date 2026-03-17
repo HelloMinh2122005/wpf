@@ -12,7 +12,7 @@ namespace WpfDiDay.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int UserId { get; set; }
+        
         public string FoodName { get; set; } = "";
         public DateTime FoodEatingTime { get; set; } = DateTime.Now;
         public long FoodCalories { get; set; } = 0;
