@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WpfDiDay")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f8a3116c61e4bdde4f45c5671bc7c9436c262670")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+28444a68fc91f1f84e7f9e766d0d36cc6f55bd16")]
 [assembly: System.Reflection.AssemblyProductAttribute("WpfDiDay")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WpfDiDay")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
