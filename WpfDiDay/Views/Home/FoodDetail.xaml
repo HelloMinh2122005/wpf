@@ -15,7 +15,6 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- Header Section -->
         <Border Grid.Row="0" Background="White" BorderBrush="#E0E0E0" BorderThickness="0,0,0,1" Padding="40,30">
             <StackPanel>
                 <TextBlock Text="THÊM THÔNG TIN THỨC ĂN" 
@@ -31,10 +30,8 @@
             </StackPanel>
         </Border>
 
-        <!-- Form Section -->
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
             <StackPanel Margin="60,40" MaxWidth="500">
-                <!-- Tên Món Ăn -->
                 <TextBlock Text="Tên Món Ăn" 
                         FontFamily="Segoe UI" 
                         FontSize="16" 
@@ -54,7 +51,6 @@
                 </Border>
                 <TextBlock Text="Nhập tên món ăn" FontSize="11" Foreground="#9CA3AF" Margin="0,4,0,20"/>
 
-                <!-- Thời gian ăn -->
                 <TextBlock Text="Thời Gian Ăn (dd/MM/yyyy)" 
                         FontFamily="Segoe UI" 
                         FontSize="16" 
@@ -74,7 +70,6 @@
                 </Border>
                 <TextBlock Text="Ví dụ: 15/03/2026" FontSize="11" Foreground="#9CA3AF" Margin="0,4,0,20"/>
 
-                <!-- Lượng Calories -->
                 <TextBlock Text="Lượng Calories (cal)" 
                         FontFamily="Segoe UI" 
                         FontSize="16" 
@@ -96,7 +91,6 @@
             </StackPanel>
         </ScrollViewer>
 
-        <!-- Button Section -->
         <Border Grid.Row="2" Background="White" BorderBrush="#E0E0E0" BorderThickness="0,1,0,0" Padding="40,20">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Content="Hủy" 
