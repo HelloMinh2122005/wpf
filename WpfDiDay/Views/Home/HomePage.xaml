@@ -35,11 +35,11 @@
         </StackPanel>
         <Grid Grid.Row="2" Margin="40">
             <DataGrid ItemsSource="{Binding Foods}" 
-          AutoGenerateColumns="False"
-          CanUserAddRows="False"
-          CanUserDeleteRows="False"
-          SelectionMode="Single"
-          SelectionChanged="FoodAnalysis_SelectionChanged">
+                AutoGenerateColumns="False"
+                CanUserAddRows="False"
+                CanUserDeleteRows="False"
+                SelectionMode="Single"
+                SelectionChanged="FoodAnalysis_SelectionChanged">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Tên món ăn" 
                             FontFamily="Cambria" 

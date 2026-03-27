@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using WpfDiDay.Services.Implements;
 using WpfDiDay.ViewModels.Home;
 using WpfDiDay.ViewModels.Onboarding;
+using WpfDiDay.Models;
 
 
 namespace WpfDiDay.Views.Home
@@ -32,6 +33,11 @@ namespace WpfDiDay.Views.Home
 
             _viewModel = new FoodDetailViewModel(navigationService, dialogService);
             DataContext = _viewModel;
+        }
+
+        public FoodDetail(User user)
+        {
+
         }
     }
 }

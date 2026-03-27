@@ -77,7 +77,7 @@ namespace WpfDiDay.Views.Home {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/WpfDiDay;V1.0.0.0;component/views/home/fooddetail.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/WpfDiDay;component/views/home/fooddetail.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Views\Home\FoodDetail.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
