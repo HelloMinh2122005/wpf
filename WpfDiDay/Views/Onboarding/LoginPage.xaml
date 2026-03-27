@@ -4,6 +4,9 @@
       Title="LoginPage" MinWidth="800" MinHeight="450">
 
     <Page.Resources>
+        <!--ButtonStyle-->
+        
+        <!--1. LabelStyle-->
         <Style x:Key="LabelStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
@@ -11,6 +14,7 @@
             <Setter Property="Margin" Value="0,0,0,8"/>
         </Style>
 
+        <!--2. PrimaryButtonStyle-->
         <Style x:Key="PrimaryButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="#1A73E8"/>
             <Setter Property="Foreground" Value="White"/>
@@ -28,6 +32,8 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <!--3. LinkButtonStyle-->
         <Style x:Key="LinkButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderThickness" Value="0"/>
@@ -95,9 +101,16 @@
                                  PasswordChanged="Password_PasswordChanged"/>
                     </Border>
 
-                    <Button Content="ĐĂNG NHẬP" Style="{StaticResource PrimaryButtonStyle}" Margin="0,0,0,25" Command="{Binding DangNhapButtonCommand}"/>
+                    <Button Content="ĐĂNG NHẬP" 
+                            Style="{StaticResource LinkButtonStyle}" 
+                            Margin="0,0,0,25" 
+                            BorderBrush="Black"
+                            Background="Blue"
+                            Command="{Binding NavigateToHomeCommand}"/>
+                    
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,0">
-                        <TextBlock Text="Chưa có tài khoản?" FontSize="15" Foreground="#5F6368" VerticalAlignment="Center"/>
+                        <TextBlock Text="Chưa có tài khoản?" FontSize="15" 
+                                   Foreground="#5F6368" VerticalAlignment="Center"/>
                         <Button Content="Đăng ký" 
                             Style="{StaticResource LinkButtonStyle}" 
                             Foreground="#1A73E8" 

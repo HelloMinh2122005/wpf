@@ -34,7 +34,7 @@ namespace WpfDiDay.ViewModels.Onboarding
         }
 
         [RelayCommand]
-        private void DangKy()
+        private void Register()
         {
             if (string.IsNullOrWhiteSpace(FirstName))
             {
@@ -72,7 +72,7 @@ namespace WpfDiDay.ViewModels.Onboarding
                 return;
             }
 
-            var newUser = new User
+            User newUser = new User
             {
                 FirstName = FirstName,
                 LastName = LastName,
@@ -87,7 +87,7 @@ namespace WpfDiDay.ViewModels.Onboarding
         }
 
         [RelayCommand]
-        private void NavigateToLogin()
+        private void BackToLogin()
         {
             _navigationService.NavigateToLogin();
         }

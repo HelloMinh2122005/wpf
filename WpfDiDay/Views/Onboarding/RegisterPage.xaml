@@ -130,8 +130,10 @@
                                  PasswordChanged="ConfirmPassword_PasswordChanged"/>
                 </Border>
 
-                <Button Content="TẠO TÀI KHOẢN" Style="{StaticResource PrimaryButtonStyle}" Margin="0,0,0,20"
-                        Command="{Binding DangKyCommand}"/>
+                <Button Content="TẠO TÀI KHOẢN" 
+                        Style="{StaticResource PrimaryButtonStyle}" 
+                        Margin="0,0,0,20"
+                        Command="{Binding RegisterCommand}"/>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,0">
                     <TextBlock Text="Đã có tài khoản?" FontSize="15" Foreground="#5F6368" VerticalAlignment="Center"/>
@@ -140,7 +142,7 @@
                             Foreground="#0F9D58" 
                             FontSize="15" 
                             Margin="5,0,0,0"
-                            Command="{Binding NavigateToLoginCommand}"/>
+                            Command="{Binding BackToLoginCommand}"/>
                 </StackPanel>
 
             </StackPanel>

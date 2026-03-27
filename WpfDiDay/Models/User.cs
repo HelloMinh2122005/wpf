@@ -8,10 +8,13 @@ namespace WpfDiDay.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public int UserId { get; set; }
         public string FirstName { get; set; } = "";
         public string LastName { get; set; } = "";
         public string Email { get; set; } = "";
         public string Password { get; set; } = "";
+
+        // Navigation property for Food Collection
+        public virtual ICollection<Food> Foods { get; set; } = new List<Food>();
     }
 }

@@ -1,5 +1,6 @@
-﻿using System.Windows.Controls;
-using WpfDiDay.Services;
+﻿using System.Windows;
+using System.Windows.Controls;
+using WpfDiDay.Services.Implements;
 using WpfDiDay.ViewModels.Onboarding;
 
 namespace WpfDiDay.Views.Onboarding
@@ -19,7 +20,7 @@ namespace WpfDiDay.Views.Onboarding
             DataContext = _viewModel;
         }
 
-        private void Password_PasswordChanged(object sender, System.Windows.RoutedEventArgs e)
+        private void Password_PasswordChanged(object sender, RoutedEventArgs e)
         {
             _viewModel.Password = pbPassword.Password;
         }

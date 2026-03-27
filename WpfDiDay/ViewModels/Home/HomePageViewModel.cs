@@ -9,6 +9,7 @@ namespace WpfDiDay.ViewModels.Home
     {
         private readonly INavigationService _navigationService;
         private readonly IDialogService _dialogService;
+        private readonly User? _user;
 
         [ObservableProperty]
         private string welcomeText = "";
@@ -17,7 +18,7 @@ namespace WpfDiDay.ViewModels.Home
         {
             _navigationService = navigationService;
             _dialogService = dialogService;
-            WelcomeText = $"Chào mừng trở lại, {user.FirstName} {user.LastName} 👋";
+            WelcomeText = (user != null) ? $"Chào mừng trở lại, {user.FirstName}, {user.LastName}" : "Chào mừng!!";
         }
 
         [RelayCommand]
@@ -27,6 +28,12 @@ namespace WpfDiDay.ViewModels.Home
             {
                 _navigationService.NavigateToLogin();
             }
+        }
+
+        [RelayCommand]
+        private void AddFood()
+        {
+            _navigationService.NavigateToAddFood(_user);
         }
     }
 }

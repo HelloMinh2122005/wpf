@@ -24,7 +24,7 @@ namespace WpfDiDay.ViewModels.Onboarding
         }
 
         [RelayCommand]
-        private void DangNhapButton()
+        private void NavigateToHome()
         {
             if (string.IsNullOrWhiteSpace(UserName))
             {
