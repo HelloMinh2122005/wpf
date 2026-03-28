@@ -11,6 +11,7 @@ namespace WpfDiDay.ViewModels.Home
         private readonly INavigationService _navigationService;
         private readonly IDialogService _dialogService;
         private readonly FoodRepository foodRepository = new FoodRepository();
+        private readonly User? _user;
 
         [ObservableProperty]
         private string welcomeText = "";
@@ -26,23 +27,30 @@ namespace WpfDiDay.ViewModels.Home
         private string year = "";
         [ObservableProperty]
         private string calories = "";
-        public AddFoodPageViewModel(INavigationService navigationService, IDialogService dialogService)
+        public AddFoodPageViewModel(INavigationService navigationService, IDialogService dialogService, User? user)
         {
             _navigationService = navigationService;
             _dialogService = dialogService;
+            _user = user;
         }
 
         [RelayCommand]
-        private void BackHome(User user)
+        private void BackHome()
         {
-            _navigationService.NavigateToHome(user);
+            if(this._user != null)
+                _navigationService.NavigateToHome(this._user);
         }
         [RelayCommand]
-        private void SaveFood(User user)
+        private void SaveFood()
         {
             if(string.IsNullOrEmpty(Foodname))
             {
                 _dialogService.ShowWarning("Enter a food name", "Validation");
+                return;
+            }
+            if (this._user == null)
+            {
+                _dialogService.ShowError("No avaiable user", "Error");
                 return;
             }
 
@@ -53,7 +61,7 @@ namespace WpfDiDay.ViewModels.Home
 
             var added_food = new Food
             {
-                UserId = user.UserId,   // add_food.UserID = user.UserId
+                UserId = _user.UserId,   // add_food.UserID = user.UserId
                 FoodName = Foodname,    // added_food.FoodName = Foodname
                 WhenEaten = eatingdate, // added_food.WhenEaten = eatingdate
                 Calories = cal          // added_food.Calories = cal
@@ -61,7 +69,7 @@ namespace WpfDiDay.ViewModels.Home
 
             foodRepository.Save(added_food);
             _dialogService.ShowSuccess("Saved Food", "Success");
-            _navigationService.NavigateToHome(user);
+            _navigationService.NavigateToHome(this._user);
         }
     }
 }
