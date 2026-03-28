@@ -24,11 +24,12 @@ namespace WpfDiDay.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<User>().Property(u => u.UserId).HasColumnName("UserId");
             // Food: depenedent;        User: principal
             modelBuilder.Entity<Food>()
                 .HasOne(f => f.User) // 1 Food -> 1 User
                 .WithMany(u => u.Foods) // 1 User -> Many Foods
-                .HasForeignKey(f => f.UserID) // UserID - Foreign key
+                .HasForeignKey(f => f.UserId) // UserID - Foreign key
                 .OnDelete(DeleteBehavior.Cascade); // Cascade: delete User -> Delete related Food rows.
         }
     }

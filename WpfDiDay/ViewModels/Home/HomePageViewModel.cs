@@ -9,7 +9,7 @@ namespace WpfDiDay.ViewModels.Home
     {
         private readonly INavigationService _navigationService;
         private readonly IDialogService _dialogService;
-        private readonly User? _user;
+        private readonly User? _user = null;
 
         [ObservableProperty]
         private string welcomeText = "";

@@ -31,10 +31,5 @@ namespace WpfDiDay.Views.Home
 
             DataContext = new AddFoodPageViewModel(navigationService, dialogService);
         }
-
-        public void AddFood(User user)
-        {
-
-        }
     }
 }

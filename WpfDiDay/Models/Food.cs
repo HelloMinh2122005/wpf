@@ -9,15 +9,15 @@ namespace WpfDiDay.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int FoodID { get; set; } // Primary Key
+        
         [Required]
-        [ForeignKey("User")]
-        public int UserID { get; set; } // Foreign Key to User.
+        public int UserId { get; set; } // Foreign Key to User.
 
         public string? FoodName { get; set; }
         public string? WhenEaten { get; set; }
         public int Calories { get; set; }
 
-        [ForeignKey("UserID")]
+        [ForeignKey(nameof(UserId))]
         public virtual User User { get; set; } = null!; // Navigation property to User
     }
 }

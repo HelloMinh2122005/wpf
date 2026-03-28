@@ -7,6 +7,7 @@ namespace WpfDiDay.Models
     public class User
     {
         [Key]
+        [Column("UserId")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UserId { get; set; }
         public string FirstName { get; set; } = "";

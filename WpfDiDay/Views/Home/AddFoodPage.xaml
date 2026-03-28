@@ -23,7 +23,7 @@
                                 Command="{Binding BackHomeCommand}"/>
                         <Button x:Name="btnSave" Content="SAVE" Width="100" Height="36" 
                                 Background="#0EA5A4" Foreground="White" 
-                                Command=""/>
+                                Command="{Binding SaveFoodCommand}"/>
                     </StackPanel>
                 </DockPanel>
 
@@ -34,16 +34,18 @@
                     <!-- Food name -->
                     <StackPanel>
                         <TextBlock Text="Tên món ăn" FontSize="14" Foreground="#475569" Margin="0,0,0,4"/>
-                        <TextBox x:Name="txtFoodName" Height="36" FontSize="14" Padding="8" />
+                        <TextBox x:Name="txtFoodName" Height="36" FontSize="14" Padding="8" Text ="{Binding Foodname, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
 
                     <!-- Date / When eaten -->
                     <StackPanel>
                         <TextBlock Text="Ngày ăn (DD/MM/YY)" FontSize="14" Foreground="#475569" Margin="0,0,0,4"/>
                         <StackPanel Orientation="Horizontal">
-                            <TextBox x:Name="txtDay" Height="36" Width="120" />
-                            <TextBox x:Name="txtMonth" Height="36" Width="120"  Margin="8,0,0,0"/>
-                            <TextBox x:Name="txtYear" Height="36" Width="120"  Margin="8,0,0,0"/>
+                            <TextBox x:Name="txtDay" Height="36" Width="120" Text ="{Binding Day, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox x:Name="txtMonth" Height="36" Width="120" Text ="{Binding Month, UpdateSourceTrigger=PropertyChanged}"
+                                     Margin="8,0,0,0"/>
+                            <TextBox x:Name="txtYear" Height="36" Width="120" Text ="{Binding Year, UpdateSourceTrigger=PropertyChanged}" 
+                                     Margin="8,0,0,0"/>
                         </StackPanel>
                     </StackPanel>
 
@@ -55,7 +57,7 @@
 
                     <!-- Optional helper text -->
                     <TextBlock Text="Ăn uống lành mạnh vì một tương lại khỏe mạnh"
-                   FontSize="12" Foreground="#94A3B8" TextWrapping="Wrap" Margin="0,6,0,0"/>
+                               FontSize="12" Foreground="#94A3B8" TextWrapping="Wrap" Margin="0,6,0,0"/>
                 </StackPanel>
             </StackPanel>
         </Border>

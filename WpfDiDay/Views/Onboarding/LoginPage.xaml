@@ -96,9 +96,10 @@
 
                     <TextBlock Text="Mật khẩu" Style="{StaticResource LabelStyle}"/>
                     <Border BorderBrush="#DADCE0" BorderThickness="1.5" CornerRadius="6" Margin="0,0,0,30">
-                        <PasswordBox x:Name="pbPassword" Height="42" Padding="12,10" BorderThickness="0" Background="Transparent" 
-                                 FontSize="15" Foreground="#202124"
-                                 PasswordChanged="Password_PasswordChanged"/>
+                        <PasswordBox x:Name="pbPassword" Height="42" Padding="12,10" 
+                                     BorderThickness="0" Background="Transparent" 
+                                     FontSize="15" Foreground="#202124"
+                                     PasswordChanged="Password_PasswordChanged"/>
                     </Border>
 
                     <Button Content="ĐĂNG NHẬP" 
