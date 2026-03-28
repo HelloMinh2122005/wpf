@@ -59,11 +59,6 @@ namespace WpfDiDay.ViewModels.Home
         {
             _navigationService.OpenEditFood(_currentUser);
         }
-        [RelayCommand]
-        private void RemoveFood()
-        {
-
-        }
 
         [RelayCommand]
         private void Logout()

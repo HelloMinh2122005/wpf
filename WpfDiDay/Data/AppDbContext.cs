@@ -24,8 +24,6 @@ namespace WpfDiDay.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            // Configure relationship between User and Food (One-to-Many)
             modelBuilder.Entity<Food>()
                 .HasOne(f => f.User)
                 .WithMany(u => u.Foods)
