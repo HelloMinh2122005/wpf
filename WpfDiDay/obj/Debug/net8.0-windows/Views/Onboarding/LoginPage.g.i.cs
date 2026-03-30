@@ -60,7 +60,7 @@ namespace WpfDiDay.Views.Onboarding {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/WpfDiDay;component/views/onboarding/loginpage.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/WpfDiDay;V1.0.0.0;component/views/onboarding/loginpage.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Views\Onboarding\LoginPage.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
