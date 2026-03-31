@@ -11,25 +11,30 @@ namespace WpfDiDay.Services.Implements
 
         public WpfNavigationService(Page page)
         {
-            this._page = page;
+            _page = page;
         }
 
         public void NavigateToHome(User user)
         {
-            this._page.NavigationService?.Navigate(new HomePage(user));
+            _page.NavigationService?.Navigate(new HomePage(user));
         }
         public void NavigateToRegister()
         {
-            this._page.NavigationService?.Navigate(new RegisterPage());
+            _page.NavigationService?.Navigate(new RegisterPage());
         }
 
         public void NavigateToLogin()
         {
-            this._page.NavigationService?.GoBack();
+            _page.NavigationService?.GoBack();
         }
-        public void NavigateToAddFood(User? user)
+        public void NavigateToAddFood(User? user) // AddFoodCommand
         {
-            this._page.NavigationService?.Navigate(new AddFoodPage(user));
+            _page.NavigationService?.Navigate(new AddFoodPage(user));
+        }
+        public void NavigateToAddFood(User? user, Food? selected_food = null) // EditFoodCommand
+        {
+            var editPage = new AddFoodPage(user, selected_food);
+            _page.NavigationService?.Navigate(editPage);
         }
     }
 }

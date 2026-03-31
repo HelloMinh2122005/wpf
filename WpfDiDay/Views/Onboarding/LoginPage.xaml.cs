@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using WpfDiDay.Services.Implements;
 using WpfDiDay.ViewModels.Onboarding;
+using WpfDiDay.Models;
 
 namespace WpfDiDay.Views.Onboarding
 {

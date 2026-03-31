@@ -16,17 +16,17 @@ namespace WpfDiDay.Views.Home
             var navigationService = new WpfNavigationService(this);
             var dialogService = new WpfDialogService();
 
-            this._viewmodel = new HomePageViewModel(user, navigationService, dialogService);
-            this.DataContext = this._viewmodel;
+            _viewmodel = new HomePageViewModel(user, navigationService, dialogService);
+            DataContext = _viewmodel;
         }
 
         private void Logout_Click(object sender, MouseButtonEventArgs e)
         {
-            this._viewmodel.LogoutCommand.Execute(null);
+            _viewmodel.LogoutCommand.Execute(null);
         }
         private void AddFood_Click(object sender, MouseButtonEventArgs e)
         {
-            this._viewmodel.AddFoodCommand.Execute(null);
+            _viewmodel.AddFoodCommand.Execute(null);
         }
     }
 }

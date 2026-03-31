@@ -15,8 +15,8 @@ namespace WpfDiDay.Repositories
         {
             if (user == null)
                 throw new ArgumentNullException(nameof(user)); 
-            this._context.Users.Add(user);
-            this._context.SaveChanges();
+            _context.Users.Add(user);
+            _context.SaveChanges();
         }
         public void Delete(User user)
         {
@@ -24,15 +24,15 @@ namespace WpfDiDay.Repositories
                 throw new ArgumentNullException(nameof(user));
             User? existing_user = null;
             if (user.UserId != 0)
-                existing_user = this._context.Users.FirstOrDefault(u => u.UserId == user.UserId);
+                existing_user = _context.Users.FirstOrDefault(u => u.UserId == user.UserId);
             else if (!string.IsNullOrEmpty(user.Email))
-                existing_user = this._context.Users.FirstOrDefault(u => u.Email == user.Email);
+                existing_user = _context.Users.FirstOrDefault(u => u.Email == user.Email);
 
             if (existing_user != null)
-                this._context.Users.Remove(user);
+                _context.Users.Remove(user);
             else
                 Console.WriteLine("This user is not found.");
-            this._context.SaveChanges();
+            _context.SaveChanges();
         }
         public bool ExistsByUserName(string email)
         {
@@ -42,6 +42,10 @@ namespace WpfDiDay.Repositories
         public User? FindByUserName(string email)
         {
             return _context.Users.FirstOrDefault(u => u.Email == email);
+        }
+        public User? FindByUserId(int userId)
+        {
+            return _context.Users.FirstOrDefault(u => u.UserId == userId);
         }
     }
 }

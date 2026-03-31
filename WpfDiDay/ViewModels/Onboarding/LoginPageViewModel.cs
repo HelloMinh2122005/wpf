@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using WpfDiDay.Repositories;
+using WpfDiDay.Models;
 using WpfDiDay.Services;
 
 namespace WpfDiDay.ViewModels.Onboarding
@@ -10,6 +11,7 @@ namespace WpfDiDay.ViewModels.Onboarding
         private readonly UserRepository _userRepository = new();
         private readonly INavigationService _navigationService;
         private readonly IDialogService _dialogService;
+        private User? _user = null;
 
         [ObservableProperty]
         private string userName = "";
@@ -38,21 +40,21 @@ namespace WpfDiDay.ViewModels.Onboarding
                 return;
             }
 
-            var user = _userRepository.FindByUserName(UserName);
-            if (user == null)
+            _user = _userRepository.FindByUserName(UserName);
+            if (_user == null)
             {
                 _dialogService.ShowError("Tên đăng nhập không tồn tại!", "Lỗi đăng nhập");
                 return;
             }
 
-            if (user.Password != Password)
+            if (_user.Password != Password)
             {
                 _dialogService.ShowError("Mật khẩu không chính xác!", "Lỗi đăng nhập");
                 return;
             }
 
-            _dialogService.ShowSuccess($"Đăng nhập thành công! Chào mừng {user.FirstName} {user.LastName}");
-            _navigationService.NavigateToHome(user);
+            _dialogService.ShowSuccess($"Đăng nhập thành công! Chào mừng {_user.FirstName} {_user.LastName}");
+            _navigationService.NavigateToHome(_user);
         }
 
         [RelayCommand]

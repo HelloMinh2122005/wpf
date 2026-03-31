@@ -53,18 +53,43 @@
                         Command="{Binding AddFoodCommand}" CommandParameter="{Binding}"/>
                 <Button Content="CHỈNH SỬA" Foreground="Green"  Background="Transparent" BorderBrush="Transparent" BorderThickness="0"
                         FontSize="36" FontWeight="Bold" Margin="0,0,15,0" 
-                        Command="{Binding FoodDetailCommand}" CommandParameter="{Binding}"/>
+                        Command="{Binding EditFoodCommand}" CommandParameter="{Binding}"/>
                 <Button Content="XÓA" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" 
                         FontSize="36" FontWeight="Bold" Margin="0,0,15,0" 
                         Command="{Binding RemoveFoodCommand}" CommandParameter="{Binding}"/>
             </StackPanel>
             <Border Margin="10">
                 <StackPanel>
-                    <!-- DataGrid -->
-                    <TextBlock Text="FoodLog" FontSize="34"  Margin="0,0,0,10"/>
+                    <!-- DataGrid Label -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" Orientation="Horizontal">
+                            <TextBlock Text="FoodLog" FontSize="34"  Margin="0,0,0,10"/>
+                            <Button Content="🔄️" FontSize="30" Background="Transparent" BorderBrush="Transparent" Margin="15,0,15,0" 
+                                    Command="{Binding RefreshCommand}" CommandParameter="{Binding}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Orientation="Horizontal">
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="Tổng lượng Calories" Foreground="Blue" FontSize="14" Margin="0,0,0,5"/>
+                                <TextBlock Text="{Binding TotalCalories}" TextAlignment="Center"
+                                           Foreground="Blue" FontSize="30" FontWeight="Bold"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical"  Margin="30,0,0,5">
+                                <TextBlock Text="Tình trạng" Foreground="OrangeRed" FontSize="14"/>
+                                <TextBlock Text="{Binding HealthStatus}" TextAlignment="Center"
+                                           Foreground="OrangeRed" FontSize="30" FontWeight="Bold"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                    
 
+                    <!-- DataGrid -->
                     <DataGrid x:Name="DataGrid_FoodLogs"
-                              ItemsSource="{Binding FoodLogs}"
+                              ItemsSource="{Binding FoodLog}" 
+                              SelectedItem="{Binding SelectedFood, Mode=TwoWay}"
                               AutoGenerateColumns="False"
                               CanUserAddRows="False"
                               IsReadOnly="True"
@@ -72,7 +97,7 @@
                               GridLinesVisibility="Horizontal">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Món ăn" Binding="{Binding FoodName}" Width="2*"/>
-                            <DataGridTextColumn Header="Thời điểm ăn" Binding="{Binding FoodName}" Width="2*"/>
+                            <DataGridTextColumn Header="Thời điểm ăn" Binding="{Binding WhenEaten}" Width="2*"/>
                             <DataGridTextColumn Header="Calories" Binding="{Binding Calories}" Width="2*"/>
                         </DataGrid.Columns>
                     </DataGrid>
