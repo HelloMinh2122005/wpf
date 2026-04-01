@@ -35,7 +35,7 @@ namespace WpfDiDay.Services.Implements
         }
         public void OpenAddFood(User user)
         {
-            _page.NavigationService?.Navigate(new FoodDetail(user, null));
+            _page.NavigationService?.Navigate(new FoodDetail(user));
         }
     }
 }

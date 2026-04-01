@@ -72,6 +72,7 @@
         </StackPanel>
         <Grid Grid.Row="2" Margin="40">
             <DataGrid ItemsSource="{Binding Foods}" 
+                  SelectedItem="{Binding SelectedFood}"
                   AutoGenerateColumns="False"
                   CanUserAddRows="False"
                   CanUserDeleteRows="False"

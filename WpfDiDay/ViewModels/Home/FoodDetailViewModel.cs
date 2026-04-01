@@ -17,8 +17,8 @@ namespace WpfDiDay.ViewModels.Home
         private readonly IDialogService _dialogService;
         private readonly FoodRepository _foodRepository;
         private readonly User _currentUser;
-        private Food? _editingFood;
-        private bool isEditMode; //Edit or Add food
+        private readonly Food? _editingFood;
+        private readonly bool isEditMode; //Edit or Add food
 
 
         [ObservableProperty]
@@ -71,20 +71,34 @@ namespace WpfDiDay.ViewModels.Home
                 _dialogService.ShowWarning("Vui lòng nhập số calo hợp lệ!", "Thông báo");
                 return;
             }
-
-
-            var newFood = new Food
-            {
-                UserId = _currentUser.Id,
-                FoodName = FoodName,
-                FoodEatingTime = FoodEadtingTime,
-                FoodCalories = FoodCalories
-            };
-
+            
             try
             {
-                _foodRepository.SaveFood(newFood);
-                _dialogService.ShowSuccess("Lưu thành công!", "Thành công");
+                if (isEditMode && _editingFood != null)
+                {
+                    // Update existing food
+                    _editingFood.FoodName = FoodName;
+                    _editingFood.FoodEatingTime = FoodEadtingTime;
+                    _editingFood.FoodCalories = FoodCalories;
+
+                    _foodRepository.UpdateFood(_editingFood);
+                    _dialogService.ShowSuccess("Cập nhật thành công!", "Thành công");
+                }
+                else
+                {
+                    // Create new food
+                    var newFood = new Food
+                    {
+                        UserId = _currentUser.Id,
+                        FoodName = FoodName,
+                        FoodEatingTime = FoodEadtingTime,
+                        FoodCalories = FoodCalories
+                    };
+
+                    _foodRepository.SaveFood(newFood);
+                    _dialogService.ShowSuccess("Lưu thành công!", "Thành công");
+                }
+
                 _navigationService.NavigateToHome(_currentUser);
             }
             catch (Exception ex)
