@@ -25,11 +25,11 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Grid.Column="0">
-                    <TextBlock Text="BẢNG ĐIỀU KHIỂN" FontSize="13" FontWeight="Bold" 
+                    <TextBlock Text="FOOD DIARY" FontSize="13" FontWeight="Bold" 
                        Foreground="#64748B" Margin="0,0,0,5"/>
                     <TextBlock x:Name="txtWelcome" Text="{Binding WelcomeText}" 
                        FontSize="32" FontWeight="Bold" Foreground="#0F172A"/>
-                    <TextBlock Text="Hôm nay bạn muốn làm gì?" FontSize="15" 
+                    <TextBlock Text="Dữ liệu về thức ăn bạn đã ăn" FontSize="15" 
                        Foreground="#64748B" Margin="0,5,0,0"/>
                 </StackPanel>
 
