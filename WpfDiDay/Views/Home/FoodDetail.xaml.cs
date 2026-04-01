@@ -23,14 +23,14 @@ namespace WpfDiDay.Views.Home
     public partial class FoodDetail : Page
     {
         private readonly FoodDetailViewModel _viewModel = null!;
-        public FoodDetail(User user)
+        public FoodDetail(User user, Food? food = null)
         {
             InitializeComponent();
 
             var navigationService = new WpfNavigationService(this);
             var dialogService = new WpfDialogService();
 
-            _viewModel = new FoodDetailViewModel(user, navigationService, dialogService);
+            _viewModel = new FoodDetailViewModel(user, navigationService, dialogService, food);
             DataContext = _viewModel;
         }
 

@@ -28,7 +28,10 @@ namespace WpfDiDay.Views.Home
 
         private void FoodAnalysis_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if (DataContext is HomePageViewModel viewModel && sender is DataGrid dataGrid)
+            {
+                viewModel.SelectedFood = dataGrid.SelectedItem as Food;
+            }
         }
     }
 }

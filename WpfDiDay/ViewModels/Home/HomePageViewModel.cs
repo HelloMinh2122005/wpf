@@ -23,22 +23,40 @@ namespace WpfDiDay.ViewModels.Home
         private long totalCaloriesThisWeek = 0;
         [ObservableProperty]
         private long totalCaloriesThisMonth = 0;
+        [ObservableProperty]
+        private Food? selectedFood = null;
         public HomePageViewModel(User user, INavigationService navigationService, IDialogService dialogService)
         {
-            _currentUser = user; 
-            _navigationService = navigationService;
-            _dialogService = dialogService;
-            _foodRepository = new FoodRepository();
-            welcomeText = $"Chào mừng trở lại, {user.FirstName} {user.LastName} 👋";
-            LoadFoods();
-            LoadTotalCaloriesThisMonth();
-            LoadTotalCaloriesThisWeek();
+            try
+            {
+                _currentUser = user;
+                _navigationService = navigationService;
+                _dialogService = dialogService;
+                _foodRepository = new FoodRepository();
+                welcomeText = $"Chào mừng trở lại, {user.FirstName} {user.LastName} 👋";
+                LoadFoods();
+                LoadTotalCaloriesThisMonth();
+                LoadTotalCaloriesThisWeek();
+            }
+            catch(Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Lỗi khởi tạo HomePageViewModel: {ex.Message}");
+                throw;
+            }
         }
 
         private void LoadFoods()
         {
-            var foodList = _foodRepository.GetFoodsByUserId(_currentUser.Id);
-            Foods = new ObservableCollection<Food>(foodList);
+            try
+            {
+                var foodList = _foodRepository.GetFoodsByUserId(_currentUser.Id);
+                Foods = new ObservableCollection<Food>(foodList);
+            }
+            catch(Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Lỗi khi tải danh sách thực phẩm: {ex.Message}");
+                Foods = new ObservableCollection<Food>();
+            }
         }
 
         private void LoadTotalCaloriesThisWeek()
@@ -57,7 +75,41 @@ namespace WpfDiDay.ViewModels.Home
         [RelayCommand]
         private void OpenEditFood()
         {
-            _navigationService.OpenEditFood(_currentUser);
+            if(SelectedFood == null)
+            {
+                _dialogService.ShowWarning("Vui lòng chọn một món ăn để chỉnh sửa!");
+                return;
+            }
+            _navigationService.OpenEditFood(_currentUser, SelectedFood);
+        }
+
+        [RelayCommand]
+        private void RemoveFood()
+        {
+            if (SelectedFood == null)
+            {
+                _dialogService.ShowWarning("Vui lòng chọn một món ăn để xóa!");
+                return;
+            }
+
+            if (!_dialogService.ShowConfirmation($"Bạn có chắc muốn xóa món ăn '{SelectedFood.FoodName}'?", "Xác nhận xóa"))
+            {
+                return;
+            }
+
+            try
+            {
+                _foodRepository.DeleteFood(SelectedFood.FoodId);
+                Foods.Remove(SelectedFood);
+                LoadTotalCaloriesThisMonth();
+                LoadTotalCaloriesThisWeek();
+                _dialogService.ShowSuccess("Xóa món ăn thành công!", "Thành công");
+                SelectedFood = null;
+            }
+            catch (Exception ex)
+            {
+                _dialogService.ShowError($"Đã xảy ra lỗi: {ex.Message} khi xóa món ăn. Vui lòng thử lại sau.", "Lỗi");
+            }
         }
 
         [RelayCommand]

@@ -29,13 +29,13 @@ namespace WpfDiDay.Services.Implements
             _page.NavigationService?.GoBack();
         }
 
-        public void OpenEditFood(User user)
+        public void OpenEditFood(User user, Food food)
         {
-            _page.NavigationService?.Navigate(new FoodDetail(user));
+            _page.NavigationService?.Navigate(new FoodDetail(user, food));
         }
         public void OpenAddFood(User user)
         {
-            _page.NavigationService?.Navigate(new FoodDetail(user));
+            _page.NavigationService?.Navigate(new FoodDetail(user, null));
         }
     }
 }

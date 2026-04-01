@@ -7,7 +7,7 @@ namespace WpfDiDay.Services
         void NavigateToHome(User user);
         void NavigateToRegister();
         void NavigateToLogin();
-        void OpenEditFood(User user);
+        void OpenEditFood(User user, Food food);
         void OpenAddFood(User user);
     }
 }

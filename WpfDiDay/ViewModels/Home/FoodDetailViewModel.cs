@@ -17,6 +17,8 @@ namespace WpfDiDay.ViewModels.Home
         private readonly IDialogService _dialogService;
         private readonly FoodRepository _foodRepository;
         private readonly User _currentUser;
+        private Food? _editingFood;
+        private bool isEditMode; //Edit or Add food
 
 
         [ObservableProperty]
@@ -25,13 +27,36 @@ namespace WpfDiDay.ViewModels.Home
         private DateTime foodEadtingTime = DateTime.Now;
         [ObservableProperty]
         private long foodCalories = 0;
-        public FoodDetailViewModel(User user, INavigationService navigationService, IDialogService dialogService)
+        public FoodDetailViewModel(User user, INavigationService navigationService, IDialogService dialogService, Food? editingFood = null)
         {
-            _currentUser = user;
-            _foodRepository = new FoodRepository();
-            _navigationService = navigationService;
-            _dialogService = dialogService;
+            try
+            {
+                _currentUser = user;
+                _foodRepository = new FoodRepository();
+                _navigationService = navigationService;
+                _dialogService = dialogService;
+                _editingFood = editingFood;
+
+                if(editingFood != null)
+                {
+                    isEditMode = true;
+                    FoodName = editingFood.FoodName;
+                    FoodEadtingTime = editingFood.FoodEatingTime;
+                    FoodCalories = editingFood.FoodCalories;
+                }
+                else
+                {
+                    isEditMode = false;
+                    FoodEadtingTime = DateTime.Now;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Lỗi khởi tạo FoodDetailViewModel: {ex.Message}");
+            }
+
         }
+
 
         [RelayCommand]
         private void SaveFood()
@@ -41,11 +66,12 @@ namespace WpfDiDay.ViewModels.Home
                 _dialogService.ShowWarning("Vui lòng nhập tên món ăn!", "Thông báo");
                 return;
             }
-            if(FoodCalories <= 0)
+            if(FoodCalories <= 0 || FoodCalories >= 5000)
             {
                 _dialogService.ShowWarning("Vui lòng nhập số calo hợp lệ!", "Thông báo");
                 return;
             }
+
 
             var newFood = new Food
             {
@@ -64,6 +90,7 @@ namespace WpfDiDay.ViewModels.Home
             catch (Exception ex)
             {
                 _dialogService.ShowError($"Lỗi {ex.Message}", "Lỗi");
+                throw;
             }
         }
         [RelayCommand]
