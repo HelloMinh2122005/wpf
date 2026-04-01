@@ -37,11 +37,8 @@ namespace WpfDiDay.Repositories
             if (food == null)
                 throw new ArgumentNullException(nameof(food));
             Food? existing_food = null;
-            if (food.FoodID != 0)
-                existing_food = _context.Foods.FirstOrDefault(f => f.FoodID == food.FoodID);
-            else if (!String.IsNullOrEmpty(food.FoodName))
-                existing_food = _context.Foods.FirstOrDefault(f => f.FoodName == food.FoodName);
-
+            existing_food = _context.Foods.FirstOrDefault(f => f.FoodID == food.FoodID);
+            
             if (existing_food != null)
                 _context.Foods.Remove(food);
             else
@@ -61,9 +58,10 @@ namespace WpfDiDay.Repositories
         {
             return _context.Foods.Where(f => f.UserId == userId).ToList();
         }
-        public int GetSumCalo()
+        public int GetSumCalo(int UserID)
         {
-            return 0;
+            return _context.Foods.Where(f => f.UserId == UserID)
+                    .Sum(f => f.Calories);
         }
     }
 }

@@ -33,7 +33,7 @@ namespace WpfDiDay.ViewModels.Home
             _dialogService = dialogService;
             _user = user;
 
-            LoadFoodLog();
+            Regenerate();
             WelcomeText = (_user != null) ? $"Chào mừng trở lại, {_user.FirstName} {_user.LastName}" 
                                             : "Chào mừng!!";
         }
@@ -47,10 +47,17 @@ namespace WpfDiDay.ViewModels.Home
         }
         private void LoadCaloriesSum()
         {
-            int sumCalo = _foodRepository.GetSumCalo();
+            if (_user == null)
+                return;
+            int sumCalo = _foodRepository.GetSumCalo(_user.UserId);
             TotalCalories = sumCalo.ToString();
             HealthStatus = (sumCalo > 360) ? "Dư calo" : 
                            (sumCalo == 360) ? "Đủ calo" : "Thiếu calo";
+        }
+        private void Regenerate()
+        {
+            LoadCaloriesSum();
+            LoadFoodLog();
         }
         [RelayCommand]
         private void Refresh()
@@ -90,7 +97,11 @@ namespace WpfDiDay.ViewModels.Home
                 return;
             }
             if (_dialogService.ShowConfirmation("Bạn có thực sự muốn xóa?", "Xác nhận"))
+            { 
                 _foodRepository.Delete(SelectedFood);
+                if(_user != null) 
+                    _navigationService.NavigateToHome(_user);
+            }
         }
     }   
 }
