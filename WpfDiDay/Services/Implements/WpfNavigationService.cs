@@ -26,7 +26,7 @@ namespace WpfDiDay.Services.Implements
 
         public void NavigateToLogin()
         {
-            _page.NavigationService?.GoBack();
+            _page.NavigationService?.Navigate(new LoginPage());
         }
 
         public void OpenEditFood(User user, Food food)
